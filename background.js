@@ -1,7 +1,8 @@
 chrome.runtime.onInstalled.addListener(function() {
     const defaultValue = {
         path: "https://images.unsplash.com/photo-1516642898673-edd1ced08e87?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
-        description: "pink fluff"
+        description: "pink fluff",
+        active: false
     };
     chrome.storage.sync.set({image: defaultValue.path}, function() {
       console.log("The background image is "+ defaultValue.description);
@@ -12,12 +13,12 @@ chrome.runtime.onInstalled.addListener(function() {
             pageUrl: {hostEquals: 'trello.com'},
           })
           ],
-              actions: [new chrome.declarativeContent.ShowPageAction()]
+        actions: [new chrome.declarativeContent.ShowPageAction()]
         }]);
       });
-      
+
       chrome.browserAction.onClicked.addListener(function() {
-        chrome.storage.sync.get('image', function(data) {
+        chrome.storage.sync.get(['image', 'active'], function(data) {
             const css= '"url(' + data.image + ')"';
             chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
               chrome.tabs.executeScript(
