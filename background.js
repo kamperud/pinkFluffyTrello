@@ -9,18 +9,7 @@ chrome.runtime.onInstalled.addListener(function() {
       backgroundIdentifier: 'trello-root'
     };
 
-    chrome.storage.sync.set({image: defaultValue.path}, function() {
-      console.log("The background image is "+ defaultValue.description);
-    });
-    chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
-        chrome.declarativeContent.onPageChanged.addRules([{
-          conditions: [new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: {hostEquals: defaultWebsite.host},
-          })
-          ],
-        actions: [new chrome.declarativeContent.ShowPageAction()]
-        }]);
-      });
+    chrome.storage.sync.set({image: defaultValue.path});
 
      chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
       const url = new URL(tab.url)
