@@ -1,13 +1,12 @@
 {
-    "name": "Pink fluff",
+    "name": "Pink Fluffy Trello",
     "version": "1.0",
-    "description": "Turns your background into pink fluff",
+    "description": "Turns your trello background into pink fluff",
     "permissions": ["activeTab", "declarativeContent", "storage", "*://*/*"],
     "background": {
         "scripts": ["background.js"],
         "persistent": false
     },
-    "options_page": "options.html",
     "icons": {
         "16": "images/fluff16.png",
         "32": "images/fluff32.png",
